@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="css/style.css" rel="stylesheet" />
 
 
@@ -74,43 +74,66 @@
     <br>
     <div class="shadow-lg bg-body contact container rounded-4" data-bs-theme="dark">
         <h1>Room Search</h1>
-        <form action="room-result.php" class="align-items-center" method="post">
-            <!-- Name input -->
-            <div class="mb-4 w-100">
-                <label class="form-label text-light" for="room_name">Room Number</label>
-                <input required type="text" id="room_name" name="room_name" placeholder="eg: 213" class="bg-tertiary form-control"/>
-            </div>           
-        
-            <div class="mb-4 w-100">
-                <label class="form-label text-light" for="building">Building</label>  
-                <select class="form-select" name="building" id="building">
-                    <option value="none" selected disabled>Select Building</option>
-                    <?php
-                        $DATABASE_HOST = 'localhost';
-                        $DATABASE_USER = 'root';
-                        $DATABASE_PASS = '';
-                        $DATABASE_NAME = 'uofg_room_information';
-                
-                        // Create connection
-                        $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-                        // Check connection
-                        if ( mysqli_connect_errno() ) {
-                            // If there is an error with the connection, stop the script and display the error.
-                            exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-                        }
-            
-                        if ($stmt = $con->prepare("SELECT building.building_id, building.building_name FROM building ORDER BY building.building_name")) {
-                            $stmt->execute();
+        <form required action="room-result.php" class="align-items-center" method="post">
+        <div class="mb-4 w-100">
+            <label class="form-label text-light" for="building">Select Building</label>
+            <select class="form-select" name="building" id="building">
+                <option value="none" selected disabled>Select Building</option>
+                <?php
+                    $DATABASE_HOST = 'localhost';
+                    $DATABASE_USER = 'root';
+                    $DATABASE_PASS = '';
+                    $DATABASE_NAME = 'uofg_room_information';
 
-                            $result = $stmt->get_result();
-                            foreach($result as $row) {
-                                echo "<option value='" . $row['building_id'] . "'>" . $row['building_name'] . "</option>";
-                            }
-                            $stmt->close();
+                    // Create connection
+                    $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+                    if (mysqli_connect_errno()) {
+                        exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+                    }
+
+                    if ($stmt = $con->prepare("SELECT building_id, building_name FROM building ORDER BY building_name")) {
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        foreach ($result as $row) {
+                            echo "<option value='" . $row['building_id'] . "'>" . $row['building_name'] . "</option>";
                         }
-                    ?>
-                </select>
-            </div>
+                        $stmt->close();
+                    }
+                ?>
+            </select>
+        </div>
+
+        <div class="mb-4 w-100">
+            <label class="form-label text-light" for="room_name">Room Number</label>
+            <select required class="form-select" name="room_name" id="room_name">
+                <option value="none" selected disabled>Select Building First</option>
+            </select>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#building').on('change', function () {
+                    var building_id = $(this).val();
+                    if (building_id) {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'fetch-rooms.php',
+                            data: { building_id: building_id },
+                            dataType: 'json',
+                            success: function (response) {
+                                $('#room_name').empty().append('<option value="none" selected disabled>Select Room</option>');
+                                $.each(response, function (key, value) {
+                                    $('#room_name').append('<option value="' + value.room_number + '">' + value.room_number + '</option>');
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        
+            
            
             <!-- Submit button -->
             <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Search</button>
@@ -123,7 +146,7 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2024 Copyright:
+            © 2025 Copyright:
             <a class="text-white" href="https://hamishallan.uk/">Hamish Allan</a>
         </div>
         <!-- Copyright -->

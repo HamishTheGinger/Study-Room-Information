@@ -81,19 +81,24 @@
             exit('Failed to connect to MySQL: ' . mysqli_connect_error());
         }
 
+      if (!isset($_POST['room_name']) || !isset($_POST['building'])) {
+          exit('Error: Missing room or building selection.');
+      }
+
         //if ( !isset($_POST['username']) ) {
         // Could not get the data that should have been sent.
         //	exit('Please fill in the username field!');
         //}
-        if ($stmt = $con->prepare("SELECT room.*, building.building_name, building.building_image FROM building, room WHERE room.building_id = building.building_id and room.room_number like ? and building.building_id = ?;")) {
+        if ($stmt = $con->prepare("SELECT room.*, building.building_name, building.building_image, chair.chair_name FROM building, room, chair WHERE room.building_id = building.building_id and chair.chair_id = room.chair_id and room.room_number like ? and building.building_id = ?;")) {
             // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-            $stmt->bind_param('ss', $_POST['room_name'],$_POST['building']);
+            $stmt->bind_param('si', $_POST['room_name'],$_POST['building']);
             $stmt->execute();
 
             $result = $stmt->get_result();
             foreach($result as $row) {
             echo "<h2>" .  $row['building_name'] . ": Room " . $row['room_number'] . "</h2>";
-            echo "<p class='subheading'>Chairs: " . $row['chair_type'] . "<p>";
+            echo "<p class='subheading'>Capacity: " . $row['room_capacity'] . "<p>";
+            echo "<p class='subheading'>Chairs: " . $row['chair_name'] . "<p>";
             echo "<p class='subheading'>Whiteboard: " . $row['whiteboard_type'] . "<p>";
             echo "<p class='subheading'>Computer: " . $row['computer_type'] . "<p>";
             echo "<p class='subheading'>Room Notes: " . $row['description'] . "<p>";
@@ -102,6 +107,8 @@
             
             }
             $stmt->close();
+        } else {
+          exit("Binding Error");
         }
     ?>  
     <br><br>
@@ -132,7 +139,7 @@
 
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-                © 2024 Copyright:
+                © 2025 Copyright:
                 <a class="text-white" href="https://hamishallan.uk/">Hamish Allan</a>
             </div>
             <!-- Copyright -->
