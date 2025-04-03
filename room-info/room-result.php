@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>Hamish Allan | Room Search</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="../img/favicon-32x32.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -24,40 +24,30 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
-    <link href="css/style.css" rel="stylesheet" />
+      <link href="../css/style.css" rel="stylesheet" />
 
 </head>
-<!-- Navbar -->
-<header>
-    <nav class="navbar navbar-expand-lg" style="padding: 0px;">
-      <div class="container-fluid nav-container">
-        <a class="navbar-brand" href="index.html">
-          <img src="img/logo.png" height="30" alt="">
-        </a>
-        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarExample01"
-          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarExample01">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="projects.html">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <!-- Navbar -->
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg" style="padding: 0px;">
+            <div class="container-fluid nav-container">
+                <a class="navbar-brand" href="#">
+                    <img src="../img/logo.png" height="30" alt="">
+                </a>
+                <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarExample01"
+                    aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarExample01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navbar -->
 
 <body>
    

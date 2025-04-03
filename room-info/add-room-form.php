@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="blank">
     <script src="https://kit.fontawesome.com/1810ce7433.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="../img/favicon-32x32.png">
 
     <title>Hamish Allan | Add Room</title>
 
@@ -25,7 +25,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
 
 
 </head>
@@ -39,12 +39,12 @@
 
         initMDB({ Collapse, Ripple });</script>
 
-    <!-- Navbar -->
-    <header>
+        <!-- Navbar -->
+        <header>
         <nav class="navbar navbar-expand-lg" style="padding: 0px;">
             <div class="container-fluid nav-container">
                 <a class="navbar-brand" href="#">
-                    <img src="img/logo.png" height="30" alt="">
+                    <img src="../img/logo.png" height="30" alt="">
                 </a>
                 <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarExample01"
                     aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,17 +53,8 @@
                 <div class="collapse navbar-collapse " id="navbarExample01">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link" aria-current="page" href="../index.html">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="projects.html">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </nav>
@@ -73,7 +64,7 @@
 
     <br>
     <div class="shadow-lg bg-body contact container rounded-4" data-bs-theme="dark">
-        <h1>Room Search</h1>
+        <h1>Add Study Room (Admin Only)</h1>
         <form required action="add-room.php" class="align-items-center" method="post">
             <div class="mb-4 w-100">
                 <label class="form-label text-light" for="building">Select Building</label>
