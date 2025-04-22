@@ -59,15 +59,20 @@
       if (!isset($_POST['room_number']) || !isset($_POST['building']) || !isset($_POST['password']) ) {
           exit('Error: Missing Required Information');
       }
+      
+      $config = include(__DIR__ . '/../../config.php'); 
 
-      if ($_POST['password'] != "ghuisahug73727vnjqbnaughuiha7gohuigyuig3") {
+      $AUTH_CODE = $config['AUTH_CODE'];
+
+
+    if ($_POST['password'] != $AUTH_CODE) {
         exit('Invalid Authentication Code');
       }
 
-        $DATABASE_HOST = 'localhost';
-        $DATABASE_USER = 'root';
-        $DATABASE_PASS = '';
-        $DATABASE_NAME = 'uofg_room_information';
+    $DATABASE_HOST = $config['DATABASE_HOST'];
+    $DATABASE_USER = $config['DATABASE_USER'];
+    $DATABASE_PASS = $config['DATABASE_PASS'];
+    $DATABASE_NAME = $config['DATABASE_NAME'];
      // Create connection
      $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
      // Check connection

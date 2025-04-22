@@ -71,10 +71,12 @@
             <select class="form-select" name="building" id="building">
                 <option value="none" selected disabled>Select Building</option>
                 <?php
-                    $DATABASE_HOST = 'localhost';
-                    $DATABASE_USER = 'root';
-                    $DATABASE_PASS = '';
-                    $DATABASE_NAME = 'uofg_room_information';
+                    $config = include(__DIR__ . '/../../config.php'); 
+
+                    $DATABASE_HOST = $config['DATABASE_HOST'];
+                    $DATABASE_USER = $config['DATABASE_USER'];
+                    $DATABASE_PASS = $config['DATABASE_PASS'];
+                    $DATABASE_NAME = $config['DATABASE_NAME'];
 
                     // Create connection
                     $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
